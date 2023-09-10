@@ -1,0 +1,28 @@
+<template>
+    <lightning-card>
+        <lightning-input label="Annual Revenue"
+           type="number"
+           value={annualRevenue}
+           formatter="currency"   
+           onchange={handleChange}
+        >
+        </lightning-input>
+        <lightning-button label="reset"
+        onclick={reset}></lightning-button>
+
+    <template if:true={recieveddata.data}>
+        <lightning-card>
+            <lightning-layout multiple-rows="true">
+            <template for:each={recieveddata.data} for:item="data">
+               <lightning-layout-item key={data.id} size="12">
+                <p>{data.name}</p>
+               </lightning-layout-item>
+            </template>
+        </lightning-layout>
+        </lightning-card>
+    </template>
+    <template if:true={recieveddata.error}>
+        <p style="color: red;">No Results Found</p>
+    </template>
+    </lightning-card>
+</template>
